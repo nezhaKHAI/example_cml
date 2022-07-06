@@ -18,15 +18,17 @@ clf.fit(X_train, y_train)
 
 acc = clf.score(X_test, y_test)
 print(acc)
-out_file = open("metrics.json","w")
-json.dump("Accuracy: " + str(acc) + "\n", out_file, indent=6)
-
+#out_file = open("metrics.json","w")
+#json.dump("Accuracy: " + str(acc) + "\n", out_file, indent=6)
+with open("metrics.txt", "w") as outfile:
+    outfile.write("Accuracy: " + str(acc) + "\n")
 
 # Plot it
-predictions = clf.predict(X_test)
-cm = confusion_matrix(y_test, predictions, labels=clf.classes_)
-disp = ConfusionMatrixDisplay(
-    confusion_matrix=cm, display_labels=clf.classes_)
+#predictions = clf.predict(X_test)
+#cm = confusion_matrix(y_test, predictions, labels=clf.classes_)
+#disp = ConfusionMatrixDisplay(
+#    confusion_matrix=cm, display_labels=clf.classes_)
+disp = plot_confusion_matrix(clf, X_test, y_test, normalize="true")
 disp.plot()
 plt.show
 plt.savefig("plot.png")
