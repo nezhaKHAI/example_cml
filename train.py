@@ -18,11 +18,9 @@ clf.fit(X_train, y_train)
 
 acc = clf.score(X_test, y_test)
 print(acc)
-# Create model folder if it does not yet exist
-if not os.path.exists("model"):
-    os.makedirs("model")
-with open("model/metrics.txt", "w") as outfile:
-    outfile.write("Accuracy: " + str(acc) + "\n")
+out_file = open("metrics.json","w")
+json.dump("Accuracy: " + str(acc) + "\n", out_file, indent=6)
+
 
 # Plot it
 predictions = clf.predict(X_test)
@@ -31,4 +29,4 @@ disp = ConfusionMatrixDisplay(
     confusion_matrix=cm, display_labels=clf.classes_)
 disp.plot()
 plt.show
-plt.savefig("model/plot.png")
+plt.savefig("plot.png")
