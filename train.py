@@ -1,5 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import  confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import  confusion_matrix, ConfusionMatrixDisplay, plot_confusion_matrix
 import matplotlib.pyplot as plt
 import json
 import os
